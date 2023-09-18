@@ -20,21 +20,19 @@ fun SetUpNavGraph(
             ExamList(navController = navController)
         }
         composable(
-            route = Screen.Detail.route,
+            route = "Exam_Detail/{title}/{description}",
             arguments = listOf(
-                navArgument(DETAIL_ARGUMENT_KEY) {
-                type = NavType.IntType
-                    defaultValue = 0
+                navArgument(DETAIL_ARGUMENT_KEY2) {
+                type = NavType.StringType
             },
-                navArgument(DETAIL_ARGUMENT_KEY2){
+                navArgument(DETAIL_ARGUMENT_KEY3){
                     type = NavType.StringType
                 }
             )
-        ){
-            Log.d("Args", it.arguments?.getInt(DETAIL_ARGUMENT_KEY).toString())
-            Log.d("Args", it.arguments?.getString(DETAIL_ARGUMENT_KEY2).toString())
-
-            ExamDetail(navController = navController)
+        ){backstackEntry ->
+            ExamDetail(title = backstackEntry.arguments?.getString("title"),
+                description = backstackEntry.arguments?.getString("description"),
+                navController = navController)
         }
     }
 }

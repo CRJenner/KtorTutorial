@@ -73,7 +73,7 @@ fun ExamList(
             ) {
                 collectedUiState.value.currentExamSession.forEach { exam ->
                     item {
-                        ExamCard( exam.id, exam.title, navController)
+                        ExamCard( exam.id, exam.title, exam.description, navController)
                 }
                 }
             }
