@@ -44,13 +44,13 @@ import kotlinx.coroutines.flow.collectLatest
 fun ExamList(
     navController: NavController,
     modifier: Modifier = Modifier,
-    examViewModel: ExamViewModel = ExamViewModel()) {
+    examViewModel: ExamViewModel = ExamViewModel())
+{
     val collectedUiState: State<UIState> = uiState.collectAsState()
 
     LaunchedEffect(Unit) {
         examViewModel.getCandidateData()
     }
-    println("Exam List Size: ${collectedUiState.value.currentExamSession.size}")
 
     Scaffold(
         topBar = {
@@ -73,7 +73,7 @@ fun ExamList(
             ) {
                 collectedUiState.value.currentExamSession.forEach { exam ->
                     item {
-                        ExamCard( exam.title, navController)
+                        ExamCard( exam.id, exam.title, navController)
                 }
                 }
             }

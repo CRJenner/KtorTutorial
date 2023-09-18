@@ -17,6 +17,7 @@ import androidx.navigation.NavController
 
 @Composable
 fun ExamCard(
+    id: Int,
     title: String,
     navController: NavController
 ){
@@ -29,12 +30,14 @@ fun ExamCard(
     ) {
         Row(
             modifier = Modifier.clickable {
-                navController.navigate(route = Screen.Detail.route)
+                navController.navigate(
+                    route = Screen.Detail.passNameAndId(id)
+                )
             },
             verticalAlignment = Alignment.CenterVertically
         ){
             Column(Modifier.padding(20.dp)){
-                Text(text = "Exam: $title" ,style = MaterialTheme.typography.headlineSmall,
+                Text(text = "Exam: ${title} + ${id}" ,style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface,)
 
             }

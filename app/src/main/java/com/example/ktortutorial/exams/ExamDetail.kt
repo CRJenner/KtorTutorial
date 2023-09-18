@@ -9,16 +9,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
+import com.example.ktortutorial.viewmodel.ExamViewModel
 
 @Composable
-fun ExamDetail(navController: NavController) {
+fun ExamDetail(navController: NavController
+) {
     Box(modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ){
         Text(modifier = Modifier.clickable {
             navController.navigate(route = Screen.List.route)
         },
-            text = "Detail",
+            text = "title",
             color = Color.Red
         )
     }

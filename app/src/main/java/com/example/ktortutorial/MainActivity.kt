@@ -22,7 +22,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         lateinit var navController: NavHostController
 
-
         super.onCreate(savedInstanceState)
         setContent {
             KtorTutorialTheme {
