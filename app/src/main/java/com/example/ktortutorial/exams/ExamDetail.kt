@@ -1,5 +1,7 @@
 package com.example.ktortutorial.exams
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +12,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -26,10 +29,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.ktortutorial.viewmodel.ExamViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-fun ExamDetail(title: String?, description: String?, locationname: String?, navController: NavController
-) {
+fun ExamDetail(title: String?, description: String?, locationname: String?, date: String?, navController: NavController
+){
+val dateFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
+val formattedDate = LocalDateTime.parse(date, dateFormatter)
+val examDate = DateTimeFormatter.ofPattern("dd MMMM YYYY ").format(formattedDate)
+val examTime = DateTimeFormatter.ofPattern("hh:mm a").format(formattedDate)
+
+
+
     Column(modifier = Modifier
         .fillMaxHeight()
         .padding(10.dp),
@@ -52,6 +65,11 @@ fun ExamDetail(title: String?, description: String?, locationname: String?, navC
             color = Color.Black,
             fontSize = 24.sp
         )
+        Text(
+            text = "ON: $examDate at $examTime",
+            color = Color.Black,
+            fontSize = 24.sp
+        )
         Button(onClick = {  navController.navigate(route = Screen.List.route) },
             border = BorderStroke(3.dp, Color.Black),
             colors = ButtonDefaults.outlinedButtonColors(contentColor = Color.Black),
@@ -60,9 +78,10 @@ fun ExamDetail(title: String?, description: String?, locationname: String?, navC
             Row{
                 Icon(
                     Icons.Default.ArrowBack,
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier.size(35.dp)
                 )
-                Text(text = " return")
+                Text(text = " Back", fontSize = 18.sp)
             }
         }
         

@@ -46,7 +46,7 @@ fun ExamList(
                     .background(Color.Black)
             ) {
                 Text(text = "VICTVS", style = MaterialTheme.typography.headlineLarge, color = Color.White)
-                Text("ExamList", style = MaterialTheme.typography.headlineMedium, color = Color.White)
+                Text("Exam List", style = MaterialTheme.typography.headlineMedium, color = Color.White)
             }
         }
     ) { paddingValues ->
@@ -59,7 +59,7 @@ fun ExamList(
             ) {
                 collectedUiState.value.currentExamSession.forEach { exam ->
                     item {
-                        ExamCard( exam.id, exam.title, exam.description, exam.locationname, navController)
+                        ExamCard( exam.id, exam.title, exam.description, exam.locationname, exam.date, navController)
                 }
                 }
             }

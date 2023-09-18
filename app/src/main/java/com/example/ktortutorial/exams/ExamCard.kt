@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -28,6 +29,7 @@ fun ExamCard(
     title: String,
     description: String,
     locationname: String,
+    date: String,
     navController: NavController
 ){
     Card(
@@ -41,19 +43,20 @@ fun ExamCard(
             modifier = Modifier.clickable {
                 navController.navigate(
                    // route = Screen.Detail.passId(id)
-                    route = "Exam_Detail/$title/$description/$locationname"
+                    route = "Exam_Detail/$title/$description/$locationname/$date"
                 )
             },
             verticalAlignment = Alignment.CenterVertically
         ){
             Row(Modifier.padding(20.dp))
             {
-                Text(text = "Exam: ${title}" ,style = MaterialTheme.typography.headlineSmall,
+                Text(text = "Exam: ${title}", style = MaterialTheme.typography.headlineSmall,
                     color = MaterialTheme.colorScheme.onSurface,)
                 Spacer(Modifier.weight(1f).fillMaxHeight())
                 Icon(
                     Icons.Default.KeyboardArrowRight,
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier.size(35.dp)
                 )
 
             }
